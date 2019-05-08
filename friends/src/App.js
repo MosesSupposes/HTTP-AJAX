@@ -19,6 +19,7 @@ export class App extends Component {
     console.log(this.state.friends);
     return (
       <div>
+      <Friendslist friends={this.state.friends} />
         
       </div>
     )

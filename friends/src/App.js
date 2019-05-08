@@ -4,6 +4,9 @@ import axios from 'axios';
 
 
 export class App extends Component {
+  state = {
+    friends: []
+  }
   render() {
     return (
       <div>

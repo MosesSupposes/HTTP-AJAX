@@ -16,6 +16,36 @@ export class App extends Component {
       .catch(error => console.log(error));
   }
 
+  handleChange = event => {
+    this.setState({ name: event.target.value });
+  }
+
+  addFriend = event => {
+    event.preventDefault();
+
+    const friends = {
+      name: this.state.friends.name,
+      age: this.state.friends.age,
+      email: this.state.friends.email
+    };
+
+    axios.post('http://localhost:5000/friends', { friends })
+      .then(res => {
+        console.log(res);
+        console.log(res.data);
+      })
+  }
+
+  deleteFriend = event => {
+    event.preventDefault();
+
+    axios.delete(`http://localhost:5000/friends/${this.state.friends.id}`)
+      .then(res => {
+        console.log(res);
+        console.log(res.data);
+      })
+  }
+
 
   render() {
 

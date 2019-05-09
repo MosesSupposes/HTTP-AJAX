@@ -1,19 +1,20 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import Friend from './Friend';
 
 
 const Friendslist = props => {
     return (
         <div className="friends-container">
-            {props.friends.map(friend) => {
-                return <Friend key={friend.id} friend = {friend} name={friend.name} age={friend.age} email={friend.email} />}
+            {props.friends.map(friend => {
+                return <Friend key={friend.id} friend = {friend} name={friend.name} age={friend.age} email={friend.email} />})
             }
         </div>
     )
 }
 
 Friendslist.propTypes = {
-    friend: PropTypes.array,
+    friend: PropTypes.object,
     key: PropTypes.number,
     name: PropTypes.string,
     age: PropTypes.number,

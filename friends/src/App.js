@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
+import Friendslist from './components/Friendslist';
 
 
 export class App extends Component {
@@ -15,8 +16,9 @@ export class App extends Component {
       .catch(error => console.log(error));
   }
 
+
   render() {
-    console.log(this.state.friends);
+
     return (
       <div>
       <Friendslist friends={this.state.friends} />

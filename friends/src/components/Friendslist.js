@@ -12,5 +12,12 @@ const Friendslist = props => {
     )
 }
 
+Friendslist.propTypes = {
+    friend: PropTypes.array,
+    key: PropTypes.number,
+    name: PropTypes.string,
+    age: PropTypes.number,
+    email: PropTypes.string
+    };  
 
 export default Friendslist;

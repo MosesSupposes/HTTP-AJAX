@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
 import Friendslist from './components/Friendslist';
+import FriendsForm from './components/FriendsForm';
 
 
 export class App extends Component {
@@ -16,63 +17,37 @@ export class App extends Component {
       .catch(error => console.log(error));
   }
 
-  handleName = (event) => {
-    event.preventDefault();
-    this.setState({
-      name: event.target.value
-    });
-  }
-
-  handleAge = (event) => {
-    event.preventDefault();
-    this.setState({
-      age: event.target.value
-    });
-  }
-
-  handleEmail = (event) => {
-    event.preventDefault();
-    this.setState({
-      email: event.target.value
-    });
-  }
-
-  addFriend = event => {
-    event.preventDefault();
-
-    const friends = {
-      name: this.state.friends.name,
-      age: this.state.friends.age,
-      email: this.state.friends.email
-    };
-
-    axios.post('http://localhost:5000/friends', { friends })
-      .then(res => {
-        console.log(res);
-        console.log(res.data);
+  addFriend = friend => {
+    axios.post('http://localhost:5000/friends', friend)
+      .then(response => {
+        this.setState({
+          friends: response.data
+        })
       })
+      .catch(err => console.log(err))
   }
 
-  deleteFriend = event => {
-    event.preventDefault();
+  deleteFriend = id => {
+    console.log(id);
 
-    axios.delete(`http://localhost:5000/friends/${this.state.friends.id}`)
-      .then(res => {
-        console.log(res);
-        console.log(res.data);
+    axios.delete(`http://localhost:5000/friends/${id}`)
+      .then(response => {
+        this.setState({
+          friends: response.data
+        })
       })
+      .catch(err => console.log(err))
   }
 
-  updateFriend = event => {
-    event.preventDefault();
 
-    const friends = {
-      name: this.state.friends.name,
-      age: this.state.friends.age,
-      email: this.state.friends.email
-    };
-
-    axios.put('http://localhost:5000/friends/${this.state.friends.id}')
+  updateFriend = (id, friend) => {
+    axios.put(`http://localhost:5000/friends/${id}`, friend)
+      .then(response => {
+        this.setState({
+          friends: response.data
+        })
+      })
+      .catch(err => console.log(err))
   }
 
 
@@ -80,8 +55,8 @@ export class App extends Component {
 
     return (
       <div>
-      <Friendslist friends={this.state.friends} />
-        
+        <FriendsForm addFriend={this.addFriend} />
+      <Friendslist friends={this.state.friends} deleteFriend={this.deleteFriend} updateFriend={this.updateFriend}/>
       </div>
     )
   }

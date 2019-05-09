@@ -4,10 +4,12 @@ import Friend from './Friend';
 
 
 const Friendslist = props => {
+
+    
     return (
         <div className="friends-container">
             {props.friends.map(friend => {
-                return <Friend key={friend.id} friend = {friend} name={friend.name} age={friend.age} email={friend.email} />})
+                return <Friend id={friend.id} friend = {friend} name={friend.name} age={friend.age} email={friend.email} deleteFriend={props.deleteFriend} updateFriend={props.updateFriend}/>})
             }
         </div>
     )

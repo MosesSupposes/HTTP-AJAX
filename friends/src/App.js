@@ -16,8 +16,25 @@ export class App extends Component {
       .catch(error => console.log(error));
   }
 
-  handleChange = event => {
-    this.setState({ name: event.target.value });
+  handleName = (event) => {
+    event.preventDefault();
+    this.setState({
+      name: event.target.value
+    });
+  }
+
+  handleAge = (event) => {
+    event.preventDefault();
+    this.setState({
+      age: event.target.value
+    });
+  }
+
+  handleEmail = (event) => {
+    event.preventDefault();
+    this.setState({
+      email: event.target.value
+    });
   }
 
   addFriend = event => {
@@ -44,6 +61,18 @@ export class App extends Component {
         console.log(res);
         console.log(res.data);
       })
+  }
+
+  updateFriend = event => {
+    event.preventDefault();
+
+    const friends = {
+      name: this.state.friends.name,
+      age: this.state.friends.age,
+      email: this.state.friends.email
+    };
+
+    axios.put('http://localhost:5000/friends/${this.state.friends.id}')
   }
 
 

@@ -4,9 +4,9 @@ import PropTypes from 'prop-types';
 const Friend = props => {
     return (
       <div className="friend-card">
-          <h3>Name:</h3> {props.name}
-          <h3>Age:</h3> {props.age}
-          <h3>Email:</h3> {props.email}
+          <div className="name"><h3>Name:</h3> {props.name}</div>
+          <div className="age"><h3>Age:</h3> {props.age}</div>
+          <div className="email"><h3>Email:</h3> {props.email}</div>
       </div>
     );
   };

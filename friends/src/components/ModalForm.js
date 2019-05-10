@@ -18,7 +18,6 @@ export default class FriendUpdate extends React.Component {
     }
 
     handleChange = (event) => {
-      console.log(event.target.value)
       this.setState({
         [event.target.name]: event.target.value
       });
@@ -44,34 +43,18 @@ export default class FriendUpdate extends React.Component {
             <ModalBody>
             <div className="row">
               <div className="form-group col-md-4">
-              <input 
-                name="name"
-                type="text" 
-                placeholder="name" 
-                value={this.state.name} 
-                onChange={this.handleChange} 
-                className="form-control"  
-              />
+              <input type="text" name="name" value={this.state.name} onChange={this.handleChangeName} className="form-control" placeholder="name" />
                 </div>
                 </div>
-
               <div className="row">
                <div className="form-group col-md-4">
-                  <input 
-                    name="age" 
-                    type="text" 
-                    placeholder="age" 
-                    value={this.state.age} 
-                    onChange={this.handleChange} 
-                    className="form-control" 
-                  />
+                  <input type="text" name="age" value={this.state.team} onChange={this.handleChangeTeam} className="form-control" placeholder="age" />
                  </div>
                 </div>
-                
               <div className="row">
                <div className="form-group col-md-4">
-                
-                  <input type="text" placeholder="email" name=" email" value={this.state.email} onChange={this.handleChange} className="form-control"  />
+                <label>Country:</label>
+                  <input type="text" name="email" value={this.country} onChange={this.handleChangeCountry} className="form-control" placeholder="email" />
                  </div>
                 </div>
             </ModalBody>

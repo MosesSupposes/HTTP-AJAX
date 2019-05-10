@@ -9,25 +9,21 @@ const Friend = props => {
           <div className="age"><h3>Age:</h3> {props.age}</div>
           <div className="email"><h3>Email:</h3> {props.email}</div>
           <button onClick={() => props.deleteFriend(props.id)}>Delete</button>
-          {/* <button onClick={() => props.updateFriend(props.id, props.friend)}>Update</button> */}
-          <ModalForm onClick={() =>
-               props.updateFriend(props.id, props.friend)} 
+          <ModalForm 
+            id={props.id}
+            updateFriend={props.updateFriend}
           />
       </div>
     );
   };
-  
 
   
-  
-
   Friend.propTypes = {
     friend: PropTypes.object,
-    key: PropTypes.number,
     name: PropTypes.string,
     age: PropTypes.number,
     email: PropTypes.string
-    };  
+  };  
   
   export default Friend;
   

@@ -4,8 +4,6 @@ import axios from 'axios';
 
 
 export default class FriendUpdate extends React.Component {
-    
-    
     state = { 
         modal: false,
         name: '',
@@ -20,6 +18,7 @@ export default class FriendUpdate extends React.Component {
     }
 
     handleChange = (event) => {
+      console.log(event.target.value)
       this.setState({
         [event.target.name]: event.target.value
       });
@@ -28,46 +27,51 @@ export default class FriendUpdate extends React.Component {
   
     handleSubmit(event) {
       event.preventDefault();
-      const form = {
-        name: this.state.name,
-        team: this.state.team,
-        country: this.state.country
-      }
-      let uri = 'http://localhost:8000/api/formmodal';
-      axios.post(uri, form).then((response) => {
-       this.setState({
-          modal: !this.state.modal
-        });
+      this.props.updateFriend(this.props.id, this.props.friend);
+      this.setState({
+        modal: !this.state.modal
       });
     }
   
   
     render() {
       return (
-  
           <div>
-          <h1>React Bootstrap Modal Example</h1>
-          <Button color="success" onClick={this.toggle}>Open Modal</Button>
+          <Button color="success" onClick={this.toggle}>Update</Button>
           <Modal isOpen={this.state.modal}>
           <form onSubmit={this.handleSubmit}>
             <ModalHeader>IPL 2018</ModalHeader>
             <ModalBody>
             <div className="row">
               <div className="form-group col-md-4">
-              <label>Name:</label>
-              <input type="text" name="name" value={this.state.name} onChange={this.handleChangeName} className="form-control" />
+              <input 
+                name="name"
+                type="text" 
+                placeholder="name" 
+                value={this.state.name} 
+                onChange={this.handleChange} 
+                className="form-control"  
+              />
                 </div>
                 </div>
+
               <div className="row">
                <div className="form-group col-md-4">
-              <label>Team:</label>
-                  <input type="text" name="age" value={this.state.team} onChange={this.handleChangeTeam} className="form-control" />
+                  <input 
+                    name="age" 
+                    type="text" 
+                    placeholder="age" 
+                    value={this.state.age} 
+                    onChange={this.handleChange} 
+                    className="form-control" 
+                  />
                  </div>
                 </div>
+                
               <div className="row">
                <div className="form-group col-md-4">
-                <label>Country:</label>
-                  <input type="text" name="email" value={this.country} onChange={this.handleChangeCountry} className="form-control" />
+                
+                  <input type="text" placeholder="email" name=" email" value={this.state.email} onChange={this.handleChange} className="form-control"  />
                  </div>
                 </div>
             </ModalBody>
